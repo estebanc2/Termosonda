@@ -1,7 +1,5 @@
 package com.mtc.termosonda.data.model
 
-import com.mtc.termosonda.R
-
 data class SondaUIData(
     val bleSet: Set<String> = setOf("no_unit"),
     val bleConnected: Boolean = false,
@@ -11,6 +9,5 @@ data class SondaUIData(
     val capture: Boolean = false,
     val showList: Boolean = false,
     val preShow: Boolean = false,
-    val nvsImage:Int = R.drawable.empty,
     val recordLevel:Float = 0.0f
 )

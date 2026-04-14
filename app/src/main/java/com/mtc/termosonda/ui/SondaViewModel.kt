@@ -3,7 +3,6 @@ package com.mtc.termosonda.ui
 import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -55,7 +54,6 @@ class SondaViewModel @Inject constructor(
     private var content = ""
     private var recId = 0
     private val _fileCreationResult = MutableLiveData<FileResult>()
-    val fileCreationResult: LiveData<FileResult> = _fileCreationResult
 
     sealed class FileResult {
         data class Success(val file: File) : FileResult()
@@ -67,20 +65,20 @@ class SondaViewModel @Inject constructor(
     }
 
     override fun notifyBleSet(newBleSet: Set<String>) {
-        _uiState.value.let { it ->
+        _uiState.value.let {
             _uiState.value = it.copy(bleSet = newBleSet)
         }
-        _uiState.value.let { it ->
+        _uiState.value.let {
             _uiState.value = it.copy(showList = true)
         }
-        _uiState.value.let { it ->
+        _uiState.value.let {
             _uiState.value = it.copy(preShow = false)
         }
         showDiscoveredDevices = false
     }
 
     override fun notifyBle(connected: Boolean) {
-        _uiState.value.let { it ->
+        _uiState.value.let {
             _uiState.value = it.copy(bleConnected = connected)
         }
         Log.i(TAG, "connected = $connected")
@@ -98,7 +96,7 @@ class SondaViewModel @Inject constructor(
                 sampleList[index] =
                     (bytesArray2ToInt(newSample[2 * index], newSample[2 * index + 1]))
             }
-            _uiState.value.let { it ->
+            _uiState.value.let {
                 _uiState.value = it.copy(tempList = sampleList.asList())
             }
         } else {
@@ -108,21 +106,9 @@ class SondaViewModel @Inject constructor(
 
     override fun notifyState(newState: NvsState) {
         Log.i(TAG, "NVS state: $newState")
-        _uiState.value.let { it ->
+        _uiState.value.let {
             _uiState.value = it.copy(state = newState)
         }
-        val glass = when (newState) {
-            NvsState.EMPTY -> R.drawable.empty
-            NvsState.LOADING -> R.drawable.medio
-            NvsState.PARTIAL -> R.drawable.medio
-            NvsState.FULL -> R.drawable.full
-            NvsState.UNKNOWN -> R.drawable.unknown
-            NvsState.WAIT -> R.drawable.wait
-        }
-        _uiState.value.let { it ->
-            _uiState.value = it.copy(nvsImage = glass)
-        }
-
     }
 
     override fun notifyDownload(b: ByteArray) {
@@ -146,7 +132,7 @@ class SondaViewModel @Inject constructor(
             content += "\n"
             recId += 1
         }
-        _uiState.value.let { it ->
+        _uiState.value.let {
             _uiState.value =
                 it.copy(recordLevel = recId.toFloat() / (blockQty * sondasPerBlock).toFloat())
         }
@@ -231,12 +217,12 @@ class SondaViewModel @Inject constructor(
 
     fun showList() {
         if (showDiscoveredDevices) {
-            _uiState.value.let { it ->
+            _uiState.value.let {
                 _uiState.value = it.copy(preShow = true)
             }
             bleManager.scanDevice()
         } else {
-            _uiState.value.let { it ->
+            _uiState.value.let {
                 _uiState.value = it.copy(showList = false)
             }
             showDiscoveredDevices = true
@@ -255,12 +241,8 @@ class SondaViewModel @Inject constructor(
     fun startDownload() {
         Log.i(TAG, "download begin")
         bleManager.startDownload()
-        _uiState.value.let { it ->
+        _uiState.value.let {
             _uiState.value = it.copy(recordLevel = 0f)
         }
-    }
-
-    fun close() {
-
     }
 }
