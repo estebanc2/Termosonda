@@ -33,7 +33,7 @@ class BleManager @Inject constructor(
         val STATE_UUID: UUID    = UUID.fromString("0000ffe3-0000-1000-8000-00805f9b34fb") //notify nvs state
         val DOWNLOAD_UUID: UUID = UUID.fromString("0000ffe4-0000-1000-8000-00805f9b34fb") //indicate stored data
         val REC_INFO_UUID: UUID = UUID.fromString("0000ffe5-0000-1000-8000-00805f9b34fb") //read info to setup the download
-        const val SCAN_IN_MS: Long = 3000
+        const val SCAN_IN_MS: Long = 5000
         const val TAG = "Ble"
     }
     private var connected = false
