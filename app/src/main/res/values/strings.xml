@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Termosonda</string>
+    <string name="rec_info_wrong_size">rec_ info wrong size</string>
+    <string name="capture">captura</string>
+    <string name="download">descarga</string>
+    <string name="capture_interval">"intervalo de captura en seg: "</string>
+    <string name="temperature">Temperatura del sensor</string>
+    <string name="grad">" °C"</string>
+</resources>

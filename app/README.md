@@ -1,0 +1,1 @@
+https://github.com/estebanc2/termosonda_c?tab=readme-ov-file#termosonda
