@@ -290,14 +290,14 @@ private fun NvsStatusRow(state: NvsState, progress: Float) {
         animationSpec = tween(400),
         label        = "nvs_progress"
     )
-    val (badgeColor, badgeBg, badgeLabel) = when (state) {
-        NvsState.EMPTY   -> Triple(MaterialTheme.colorScheme.onSurfaceVariant,
-            MaterialTheme.colorScheme.surfaceVariant, "VACÍO")
+    val (badgeColor, badgeBg, badgeLabel) = when (state)
+    {
+        NvsState.EMPTY   -> Triple(MaterialTheme.colorScheme.onSurfaceVariant, MaterialTheme.colorScheme.surfaceVariant, "VACÍO")
         NvsState.WAIT    -> Triple(ext.warning, ext.warningMuted, "CAPTURANDO")
         NvsState.PARTIAL -> Triple(ext.warning, ext.warningMuted, "PARCIAL")
         NvsState.FULL    -> Triple(ext.connected, ext.connectedMuted, "COMPLETO")
         NvsState.LOADING -> Triple(MaterialTheme.colorScheme.primary,
-            ext.outlineSubtle, "DESCARGANDO")
+            ext.outlineSubtle, "CARGANDO")
         else             -> Triple(MaterialTheme.colorScheme.onSurfaceVariant,
             MaterialTheme.colorScheme.surfaceVariant, state.name)
     }

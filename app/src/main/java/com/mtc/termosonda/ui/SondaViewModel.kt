@@ -2,6 +2,7 @@ package com.mtc.termosonda.ui
 
 import android.bluetooth.BluetoothAdapter
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
